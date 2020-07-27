@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rootView"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="?selectableItemBackgroundBorderless">
+
+    <LinearLayout
+        android:id="@+id/contentView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="horizontal"
+        android:gravity="center"
+        tools:ignore="UseCompoundDrawables">
+
+        <ImageView
+            android:id="@+id/iconImageView"
+            android:layout_width="@dimen/bm_item_icon_default_size"
+            android:layout_height="@dimen/bm_item_icon_default_size"
+            tools:ignore="ContentDescription"/>
+
+        <TextView
+            android:id="@+id/titleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lines="1"
+            android:textSize="@dimen/bm_item_text_default_size"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center_vertical"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/badgeMainView"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/d_16dp"
+        android:minWidth="@dimen/d_16dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/badge_left_margin"
+        android:layout_marginTop="@dimen/d_3dp"
+        android:layout_toRightOf="@+id/contentView"
+        android:visibility="gone"
+        tools:ignore="RtlHardcoded">
+
+        <TextView
+            android:id="@+id/badgeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/bm_item_badge_text_default_size"
+            android:textStyle="bold"
+            android:layout_marginStart="@dimen/d_2dp"
+            android:layout_marginEnd="@dimen/d_2dp"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/white</color>
+    <color name="colorPrimaryDark">@color/white</color>
+    <color name="colorAccent">#9b2776</color>
+    <color name="main_gray">#424242</color>
+    <color name="click_gray">#949494</color>
+    <color name="click_gray2">#707070</color>
+    <color name="light_gray">#dfdfdf</color>
+    <color name="light_gray2">#f2f2f2</color>
+    <color name="light_gray3">#F8F8F8</color>
+    <color name="dark_gray">#111111</color>
+    <color name="gray">#202020</color>
+    <color name="gray2">#292929</color>
+    <color name="main_light_gray">#eeeeee</color>
+    <color name="main_light_gray2">#FDFDFD</color>
+    <color name="main_pink">#e74d77</color>
+    <color name="main_purple">#9b2776</color>
+    <color name="main_purple2">#FF9E2373</color>
+    <color name="main_purple_light">#C63297</color>
+    <color name="main_purple_light2">#ED47B9</color>
+    <color name="main_purple_light3">#FF73D4</color>
+    <color name="main_orange">#ef4c00</color>
+    <color name="status_bar_color">#b5080808</color>
+    <color name="status_bar_color2">#55080808</color>
+<!--    <color name="main_blue">#26C6DA</color>-->
+    <color name="main_blue2">#37474F</color>
+    <color name="main_blue">#0788FF</color>
+    <color name="main_blue_light">#AED6FA</color>
+    <color name="main_blue_light2">#EAF5FF</color>
+    <color name="main_blue3">#42A7FC</color>
+    <color name="main_green">#158957</color>
+    <color name="main_green2">#17d683</color>
+    <color name="main_green3">#14B972</color>
+    <color name="main_red">#ed3237</color>
+    <color name="main_red2">#FF3564</color>
+    <color name="main_red3">#ed3245</color>
+    <color name="main_red4">#FD495C</color>
+    <color name="main_yellow">#FACC1E</color>
+    <color name="main_yellow2">#FFEB3B</color>
+    <color name="main_yellow3">#ecf242</color>
+    <color name="main_red2_light">#ff5a6a</color>
+    <color name="main_light_green">#ecf6f5</color>
+    <color name="main_light_pink">#f397ac</color>
+    <color name="transparent">#00ffffff</color>
+    <color name="transparent_gray">#ed202020</color>
+    <color name="transparent_white">#18ffffff</color>
+    <color name="transparent_white2">#65FFFFFF</color>
+    <color name="transparent_white3">#65A3A3A3</color>
+<!--    <color name="transparent_gray">#18090909</color>-->
+    <color name="transparent_black">#18000000</color>
+    <color name="transparent_black2">#D2000000</color>
+    <color name="transparent_green2">#A117D683</color>
+    <color name="transparent_red2">#A1ed3245</color>
+    <color name="transparent_yellow2">#A1FACC1E</color>
+    <color name="invisible">#00ffffff</color>
+
+
+    <color name="yellow">#F6A623</color>
+
+    <color name="violet">#673AB7</color>
+    <color name="violet_trans_80">#BF673AB7</color>
+
+
+    <color name="orange">#F07B3F</color>
+
+    <color name="grey">#949494</color>
+    <color name="red">#FE3824</color>
+    <color name="red_logout">#E95354</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="white_transparent_80">#BFFFFFFF</color>
+
+    <color name="primary_text">#212121</color>
+    <color name="secondary_text">#727272</color>
+    <color name="chrome_grey">#F2F2F2</color>
+    <color name="txt_profile">#2C4058</color>
+    <!--shimmer-->
+    <color name="demo_light_transparent">#16000000</color>
+    <color name="demo_dark_transparent">#24000000</color>
+
+    <color name="black">#000000</color>
+
+    <color name="black_25_transparent">#40000000</color>
+
+    <color name="grey_trans">#c7c7c7</color>
+
+    <color name="green">#70c050</color>
+
+    <color name="shadow_view_foreground_color_light">#33ffffff</color>
+    <color name="shadow_view_default_shadow_color">#DCDDE0</color>
+    <color name="shadow_view_foreground_color_dark">#1f000000</color>
+
+    <!-- TODO  bottom menu colors  -->
+    <color name="bm_white">#ffffff</color>
+    <color name="bm_background_color">#ffffff</color>
+    <color name="bm_transparent">#00000000</color>
+    <color name="bm_center_button_color">#ed3245</color>
+    <color name="bm_default_inactive_item_color">#424242</color>
+    <color name="bm_default_active_item_color">#ed3245</color>
+    <color name="bm_default_inactive_item_text_color">#ffffff</color>
+    <color name="bm_default_active_item_text_color">#ed3245</color>
+    <color name="bm_selected_item_color">#3fffffff</color>
+    <color name="bm_badge_background_color">#ed3245</color>
+    <color name="bm_white_with_alpha">#bfffffff</color>
+    <color name="bm_background_highlight_color">#8dffffff</color>
+    <color name="bm_default_border_color">#dfdfdf</color>
+
+</resources>
