@@ -5,10 +5,11 @@
 ![Alt text](screenshots/linear_border.jpg?raw=true "Linear")
 
 
-Gradle :
+### Gradle ###
 
 Step 1. Add it in your root build.gradle at the end of repositories:
 
+```groovy
 	allprojects {
 		repositories {
 			...
@@ -16,17 +17,24 @@ Step 1. Add it in your root build.gradle at the end of repositories:
 		}
 	}
   
+  ```
+  
   Step 2. Add the dependency
+  
+  ```groovy
 
 	dependencies {
 	        implementation 'com.github.Hofinity:BottomNavigation:0.0.1'
 	}
 	
+   ```	
   -------------------------------------------------------------------------
   
-  Maven :
+  ### Maven ###
   
   Step 1. 
+  
+  ```groovy
   
   	<repositories>
 		<repository>
@@ -34,23 +42,26 @@ Step 1. Add it in your root build.gradle at the end of repositories:
 		    <url>https://jitpack.io</url>
 		</repository>
 	</repositories>
+  ```
   
   Step 2. Add the dependency
 
+```groovy
 	<dependency>
 	    <groupId>com.github.Hofinity</groupId>
 	    <artifactId>BottomNavigation</artifactId>
 	    <version>0.0.1</version>
 	</dependency>
-
+```
   -------------------------------------------------------------------------
 
 
-Getting started
+# Getting started
 
-  Adding a custom widget in xml :
+  Adding a custom widget in `xml` :
 
-    <com.hofinity.bottomNavigation.BottomNavigationView
+  ```xml
+  <com.hofinity.bottomNavigation.BottomNavigationView
         android:id="@+id/bnv"
         android:layout_width="match_parent"
         android:layout_height="75dp"
@@ -74,26 +85,28 @@ Getting started
         app:bm_badgeTextColor="#ffffff"
         app:bm_badgeShapeType="filledOval"
         app:bm_borderType="centerCurved"/>
+  ```
 
-
-  Binding view in Activity:
-  
-	BottomNavigationView bnv = findViewById(R.id.bnv);
+  Binding view in `Activity`:
+  ```java
+      BottomNavigationView bnv = findViewById(R.id.bnv);
+   ```
 	
   Add items:
-  
+  ```java
         bnv.addBmItem(new BmItem("profile", R.drawable.ic_user));
         bnv.addBmItem(new BmItem("support", R.drawable.ic_support));
         bnv.addBmItem(new BmItem("search", R.drawable.ic_search));
         bnv.addBmItem(new BmItem("setting", R.drawable.ic_settings));
 
   Add badge view:
-  
+  ```java
         bnv.showBadgeAtIndex(0,1000);
         bnv.showFullBadgeText(true);
+  ```
 	
   Items click listener:
-
+```java
         bnv.setBmOnClickListener(new BmOnClickListener() {
             @Override
             public void onCenterButtonClick() {
@@ -112,8 +125,10 @@ Getting started
 
         });
 	
+  ```
+	
   Items long click listener:
-
+```java
         bnv.setBmOnLongClickListener(new BmOnLongClickListener() {
             @Override
             public void onCenterButtonLongClick() {
@@ -125,3 +140,4 @@ Getting started
 
             }
         });
+  ```
