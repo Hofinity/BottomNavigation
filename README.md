@@ -1,6 +1,6 @@
 # BottomNavigation
 
-![Alt text](screenshots/center_curved_border.jpg?raw=true "CUrved")
+![Alt text](screenshots/center_curved_border.jpg?raw=true "Curved")
 
 ![Alt text](screenshots/linear_border.jpg?raw=true "Linear")
 
