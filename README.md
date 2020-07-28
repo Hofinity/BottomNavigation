@@ -2,7 +2,7 @@
 
 ![Alt text](screenshots/center_curved_border.jpg?raw=true "CUrved")
 
-![Alt text](relative/path/to/https://github.com/Hofinity/BottomNavigation/blob/master/screenshots/linear_border.jpg?raw=true "Linear")
+![Alt text](screenshots/linear_border.jpg?raw=true "Linear")
 
 
 Gradle :
