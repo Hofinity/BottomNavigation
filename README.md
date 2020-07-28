@@ -73,7 +73,7 @@ Getting started
         app:bm_badgeBackgroundColor="#ed3245"
         app:bm_badgeTextColor="#ffffff"
         app:bm_badgeShapeType="filledOval"
-        app:bm_borderType="linear"/>
+        app:bm_borderType="centerCurved"/>
 
 
   Binding view in Activity:
