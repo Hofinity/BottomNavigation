@@ -99,7 +99,9 @@ Step 1. Add it in your root build.gradle at the end of repositories:
         bnv.addBmItem(new BmItem("search", R.drawable.ic_search));
         bnv.addBmItem(new BmItem("setting", R.drawable.ic_settings));
 
+  ```
   Add badge view:
+  
   ```java
         bnv.showBadgeAtIndex(0,1000);
         bnv.showFullBadgeText(true);
