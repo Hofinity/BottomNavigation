@@ -80,8 +80,6 @@ Getting started
   
 	BottomNavigationView bnv = findViewById(R.id.bnv);
 	
-        bnv.initWithSaveInstanceState(savedInstanceState);
-	
   Add items:
   
         bnv.addBmItem(new BmItem("profile", R.drawable.ic_user));
