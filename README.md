@@ -1,10 +1,9 @@
 # BottomNavigation
 
-![Alt text](relative/path/to/Hofinity/BottomNavigation/blob/master/screenshots/center_curved_border.jpg?raw=true "Title")
+![Alt text](relative/path/to/https://github.com/Hofinity/BottomNavigation/blob/master/screenshots/center_curved_border.jpg?raw=true "CUrved")
 
-![Alt text](relative/path/to/img.jpg?raw=true "Title")
+![Alt text](relative/path/to/https://github.com/Hofinity/BottomNavigation/blob/master/screenshots/linear_border.jpg?raw=true "Linear")
 
-https://github.com/Hofinity/BottomNavigation/blob/master/screenshots/linear_border.jpg
 
 Gradle :
 
