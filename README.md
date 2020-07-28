@@ -1,6 +1,8 @@
 # BottomNavigation
 
-https://github.com/Hofinity/BottomNavigation/blob/master/screenshots/center_curved_border.jpg
+![Alt text](relative/path/to/Hofinity/BottomNavigation/blob/master/screenshots/center_curved_border.jpg?raw=true "Title")
+
+![Alt text](relative/path/to/img.jpg?raw=true "Title")
 
 https://github.com/Hofinity/BottomNavigation/blob/master/screenshots/linear_border.jpg
 
