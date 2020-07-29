@@ -67,7 +67,6 @@ public class BottomNavigationView extends RelativeLayout {
     int itemsMode = NORMAL;
     int badgeShapeType = FILLED_OVAL;
     int borderType = CENTER_CURVED;
-    int borderThickness = 5;
     int bmItemIconSize = NOT_DEFINED;
     int bmItemIconOnlySize = NOT_DEFINED;
     int bmItemTextSize = NOT_DEFINED;
@@ -88,6 +87,8 @@ public class BottomNavigationView extends RelativeLayout {
     int badgeBackgroundColor = NOT_DEFINED;
     int currentSelectedItem = 0;
     int contentWidth;
+    int borderThickness = 5;
+    int badgeDelayMillis = 1000;
 
     final int bmNavigationHeight = (int) getResources().getDimension(R.dimen.bm_navigation_height);
     final int mainContentHeight = (int) getResources().getDimension(R.dimen.main_content_height);
@@ -96,12 +97,13 @@ public class BottomNavigationView extends RelativeLayout {
     final int centerButtonSize = (int) getResources().getDimension(R.dimen.bm_center_button_default_size);
 
     static final String TAG = "BottomNavigationView";
-    static final String CURRENT_SELECTED_ITEM_BUNDLE_KEY = "currentItem";
-    static final String BADGES_ITEM_BUNDLE_KEY = "badgeItem";
-    static final String CHANGED_ICON_AND_TEXT_BUNDLE_KEY = "changedIconAndText";
-    static final String center_BUTTON_ICON_KEY = "centerButtonIconKey";
-    static final String center_BUTTON_COLOR_KEY = "centerButtonColorKey";
-    static final String bm_backgroundColor_KEY = "backgroundColorKey";
+
+    static final String CURRENT_SELECTED_ITEM_KEY = "currentItem";
+    static final String BADGES_ITEM_KEY = "badgeItem";
+    static final String CHANGED_ICON_AND_TEXT_KEY = "changedIconAndText";
+    static final String CENTER_BUTTON_ICON_KEY = "centerButtonIconKey";
+    static final String CENTER_BUTTON_COLOR_KEY = "centerButtonColorKey";
+    static final String BACKGROUND_COLOR_KEY = "backgroundColorKey";
     static final String BADGE_FULL_TEXT_KEY = "badgeFullTextKey";
     static final String VISIBILITY_KEY = "visibilityKey";
 
@@ -178,8 +180,8 @@ public class BottomNavigationView extends RelativeLayout {
             
             //border params
             borderType = typedArray.getInt(R.styleable.BottomNavigationView_bm_borderType, CENTER_CURVED);
-            showBorder = typedArray.getBoolean(R.styleable.BottomNavigationView_bm_show_border, false);
-            borderColor = typedArray.getColor(R.styleable.BottomNavigationView_bm_border_color, resources.getColor(R.color.bm_default_border_color));
+            showBorder = typedArray.getBoolean(R.styleable.BottomNavigationView_bm_showBorder, false);
+            borderColor = typedArray.getColor(R.styleable.BottomNavigationView_bm_borderColor, resources.getColor(R.color.bm_default_border_color));
 
             //badge params
             badgeShapeType = typedArray.getInt(R.styleable.BottomNavigationView_bm_badgeShapeType, FILLED_OVAL);
@@ -243,11 +245,9 @@ public class BottomNavigationView extends RelativeLayout {
         if (badgeBackgroundColor == NOT_DEFINED)
             badgeBackgroundColor = ContextCompat.getColor(context, R.color.bm_badge_background_color);
 
-        if (borderType == NOT_DEFINED)
-            borderType = CENTER_CURVED;
+        if (borderType == NOT_DEFINED) borderType = CENTER_CURVED;
 
-        if (badgeShapeType == NOT_DEFINED)
-            badgeShapeType = FILLED_OVAL;
+        if (badgeShapeType == NOT_DEFINED) badgeShapeType = FILLED_OVAL;
 
         // Set main layout params
         ViewGroup.LayoutParams params = getLayoutParams();
@@ -267,18 +267,18 @@ public class BottomNavigationView extends RelativeLayout {
         // Restore current item index from savedInstance
         restoreCurrentItem();
 
-        // Trow exceptions if items size is greater than 4 or lesser than 2
-        if (bmItems.size() < MIN_ITEM_SIZE && !isInEditMode()) {
-            throw new NullPointerException("Your BottomMenu item count must be greater than 1 ," +
-                    " your current items count isa : " + bmItems.size());
-        }
+//        // Trow exceptions if items size is greater than 4 or lesser than 2
+//        if (bmItems.size() < MIN_ITEM_SIZE && !isInEditMode()) {
+//            throw new NullPointerException("Your BottomMenu item count must be greater than 1 ," +
+//                    " your current items count is : " + bmItems.size());
+//        }
 
         if (bmItems.size() > MAX_ITEM_SIZE && !isInEditMode()) {
             throw new IndexOutOfBoundsException("Your items count maximum can be 4," +
                     " your current items count is : " + bmItems.size());
         }
 
-        // Get left or right content width
+        // Get start or end content width
         contentWidth = (width - bmNavigationHeight) / 2;
 
         // Removing all view for not being duplicated
@@ -360,7 +360,7 @@ public class BottomNavigationView extends RelativeLayout {
         centerContentParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 
         // Center Background View content params
-        LayoutParams centerBackgroundViewParams = new LayoutParams(mainContentWidth, mainContentHeight);
+        LayoutParams centerBackgroundViewParams = new LayoutParams(mainContentWidth, mainContentHeight-borderThickness);
         centerBackgroundViewParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         centerBackgroundViewParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
 
@@ -404,8 +404,8 @@ public class BottomNavigationView extends RelativeLayout {
     /**
      * Adding given items to content
      *
-     * @param startContentView  to left content
-     * @param endContentView    and right content
+     * @param startContentView  to start content
+     * @param endContentView    to end content
      */
     private void addBmItems(LinearLayout startContentView, LinearLayout endContentView) {
 
@@ -459,6 +459,15 @@ public class BottomNavigationView extends RelativeLayout {
                 bmItemContentView.setOrientation(LinearLayout.VERTICAL);
             }
 
+            if (bmItems.size() <= 2) {
+                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                        LayoutParams.WRAP_CONTENT,
+                        LayoutParams.WRAP_CONTENT
+                );
+                params.setMargins(20, 0, 20, 0);
+                bmItemText.setLayoutParams(params);
+            }
+
             if (bmItems.size() == 3 && i == 2) {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                         LayoutParams.WRAP_CONTENT,
@@ -497,6 +506,7 @@ public class BottomNavigationView extends RelativeLayout {
                     Utils.changeViewVisibility(bmItemText, View.GONE);
                     break;
 
+                // Hide item text and icon
                 case HIDDEN:
                     iconParams.height = bmItemIconSize;
                     iconParams.width = bmItemIconSize;
@@ -505,6 +515,8 @@ public class BottomNavigationView extends RelativeLayout {
                     Utils.changeViewVisibility(bmItemIcon, View.GONE);
                     break;
 
+
+                // Show item text and icon
                 case NORMAL:
                 default :
                     iconParams.height = bmItemIconSize;
@@ -519,7 +531,7 @@ public class BottomNavigationView extends RelativeLayout {
             // Adding badge items to badge list
             badgeList.add(badgeMainView);
 
-            // Adding sub views to left and right sides
+            // Adding sub views to start and end sides
             if (bmItems.size() == MIN_ITEM_SIZE && startContentView.getChildCount() == 1) {
                 endContentView.addView(textAndIconContainer, textAndIconContainerParams);
             } else if (bmItems.size() > MIN_ITEM_SIZE && startContentView.getChildCount() == 2) {
@@ -626,16 +638,7 @@ public class BottomNavigationView extends RelativeLayout {
     private void setBackgroundColors() {
         startContentView.setBackgroundColor(bmBackgroundColor);
         endContentView.setBackgroundColor(bmBackgroundColor);
-
-        if(borderType == LINEAR) {
-            centerBackgroundView.setBackgroundColor(ContextCompat.getColor(context, R.color.bm_transparent));
-        } else if(borderType == CENTER_CURVED) {
-//            centerBackgroundView.setBackgroundColor(bmBackgroundColor);
-            centerBackgroundView.setBackgroundColor(bmBackgroundColor);
-        } else {
-//            centerBackgroundView.setBackgroundColor(bmBackgroundColor);
-            centerBackgroundView.setBackgroundColor(bmBackgroundColor);
-        }
+        centerBackgroundView.setBackgroundColor(bmBackgroundColor);
     }
 
     /**
@@ -656,8 +659,8 @@ public class BottomNavigationView extends RelativeLayout {
     private void restoreCurrentItem() {
         Bundle restoredBundle = savedInstanceState;
         if (restoredBundle != null) {
-            if (restoredBundle.containsKey(CURRENT_SELECTED_ITEM_BUNDLE_KEY))
-                currentSelectedItem = restoredBundle.getInt(CURRENT_SELECTED_ITEM_BUNDLE_KEY, 0);
+            if (restoredBundle.containsKey(CURRENT_SELECTED_ITEM_KEY))
+                currentSelectedItem = restoredBundle.getInt(CURRENT_SELECTED_ITEM_KEY, 0);
         }
     }
 
@@ -666,6 +669,7 @@ public class BottomNavigationView extends RelativeLayout {
      */
     @SuppressWarnings("unchecked")
     private void restoreBadges() {
+
         Bundle restoredBundle = savedInstanceState;
 
         if (restoredBundle != null) {
@@ -673,8 +677,8 @@ public class BottomNavigationView extends RelativeLayout {
                 show99plusSign = restoredBundle.getBoolean(BADGE_FULL_TEXT_KEY);
             }
 
-            if (restoredBundle.containsKey(BADGES_ITEM_BUNDLE_KEY)) {
-                badgeSaveInstanceHashMap = (HashMap<Integer, Object>) savedInstanceState.getSerializable(BADGES_ITEM_BUNDLE_KEY);
+            if (restoredBundle.containsKey(BADGES_ITEM_KEY)) {
+                badgeSaveInstanceHashMap = (HashMap<Integer, Object>) savedInstanceState.getSerializable(BADGES_ITEM_KEY);
                 if (badgeSaveInstanceHashMap != null) {
                     for (Integer integer : badgeSaveInstanceHashMap.keySet()) {
                         BadgeHelper.forceShowBadge(badgeList.get(integer),
@@ -693,8 +697,8 @@ public class BottomNavigationView extends RelativeLayout {
     private void restoreChangedIconsAndTexts() {
         Bundle restoredBundle = savedInstanceState;
         if (restoredBundle != null) {
-            if (restoredBundle.containsKey(CHANGED_ICON_AND_TEXT_BUNDLE_KEY)) {
-                changedItemAndIconHashMap = (HashMap<Integer, BmItem>) restoredBundle.getSerializable(CHANGED_ICON_AND_TEXT_BUNDLE_KEY);
+            if (restoredBundle.containsKey(CHANGED_ICON_AND_TEXT_KEY)) {
+                changedItemAndIconHashMap = (HashMap<Integer, BmItem>) restoredBundle.getSerializable(CHANGED_ICON_AND_TEXT_KEY);
                 if (changedItemAndIconHashMap != null) {
                     BmItem bmItem;
                     for (int i = 0; i < changedItemAndIconHashMap.size(); i++) {
@@ -705,13 +709,13 @@ public class BottomNavigationView extends RelativeLayout {
                 }
             }
 
-            if (restoredBundle.containsKey(center_BUTTON_ICON_KEY)) {
-                centerButtonIcon = restoredBundle.getInt(center_BUTTON_ICON_KEY);
+            if (restoredBundle.containsKey(CENTER_BUTTON_ICON_KEY)) {
+                centerButtonIcon = restoredBundle.getInt(CENTER_BUTTON_ICON_KEY);
                 centerButton.setImageResource(centerButtonIcon);
             }
 
-            if (restoredBundle.containsKey(bm_backgroundColor_KEY)) {
-                int backgroundColor = restoredBundle.getInt(bm_backgroundColor_KEY);
+            if (restoredBundle.containsKey(BACKGROUND_COLOR_KEY)) {
+                int backgroundColor = restoredBundle.getInt(BACKGROUND_COLOR_KEY);
                 changeBackgroundColor(backgroundColor);
             }
         }
@@ -755,16 +759,16 @@ public class BottomNavigationView extends RelativeLayout {
      * @param outState bundle to saveInstance
      */
     public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(CURRENT_SELECTED_ITEM_BUNDLE_KEY, currentSelectedItem);
-        outState.putInt(center_BUTTON_ICON_KEY, centerButtonIcon);
-        outState.putInt(bm_backgroundColor_KEY, bmBackgroundColor);
+        outState.putInt(CURRENT_SELECTED_ITEM_KEY, currentSelectedItem);
+        outState.putInt(CENTER_BUTTON_ICON_KEY, centerButtonIcon);
+        outState.putInt(BACKGROUND_COLOR_KEY, bmBackgroundColor);
         outState.putBoolean(BADGE_FULL_TEXT_KEY, show99plusSign);
         outState.putFloat(VISIBILITY_KEY, this.getTranslationY());
 
         if (badgeSaveInstanceHashMap.size() > 0)
-            outState.putSerializable(BADGES_ITEM_BUNDLE_KEY, badgeSaveInstanceHashMap);
+            outState.putSerializable(BADGES_ITEM_KEY, badgeSaveInstanceHashMap);
         if (changedItemAndIconHashMap.size() > 0)
-            outState.putSerializable(CHANGED_ICON_AND_TEXT_BUNDLE_KEY, changedItemAndIconHashMap);
+            outState.putSerializable(CHANGED_ICON_AND_TEXT_KEY, changedItemAndIconHashMap);
     }
 
     public void setCenterButtonId(@IdRes int id) {
@@ -990,17 +994,24 @@ public class BottomNavigationView extends RelativeLayout {
         if (itemIndex < 0 || itemIndex > bmItems.size()) {
             throwArrayIndexOutOfBoundsException(itemIndex);
         } else {
+
+            if(badgeList.size() == 0) badgeDelayMillis = 1100;
+            else badgeDelayMillis = 300;
+
             new Handler().postDelayed(() -> {
 
-                RelativeLayout badgeView = badgeList.get(itemIndex);
+                if(badgeList.size() > 0) {
 
-                // Set circle background to badge view
-                badgeView.setBackground(BadgeHelper.createShapeDrawable(badgeBackgroundColor,badgeShapeType));
+                    RelativeLayout badgeView = badgeList.get(itemIndex);
 
-                BadgeItem badgeItem = new BadgeItem(itemIndex, badgeText,badgeBackgroundColor);
-                BadgeHelper.showBadge(badgeView, badgeItem,badgeTextColor, show99plusSign);
-                badgeSaveInstanceHashMap.put(itemIndex, badgeItem);
-            }, 1000);
+                    // Set background to badge view
+                    badgeView.setBackground(BadgeHelper.createShapeDrawable(badgeBackgroundColor, badgeShapeType));
+
+                    BadgeItem badgeItem = new BadgeItem(itemIndex, badgeText, badgeBackgroundColor);
+                    BadgeHelper.showBadge(badgeView, badgeItem, badgeTextColor, show99plusSign);
+                    badgeSaveInstanceHashMap.put(itemIndex, badgeItem);
+                }
+            }, badgeDelayMillis);
         }
     }
 
@@ -1015,17 +1026,24 @@ public class BottomNavigationView extends RelativeLayout {
         if (itemIndex < 0 || itemIndex > bmItems.size()) {
             throwArrayIndexOutOfBoundsException(itemIndex);
         } else {
+
+            if(badgeList.size() == 0) badgeDelayMillis = 1100;
+            else badgeDelayMillis = 300;
+
             new Handler().postDelayed(() -> {
 
-                RelativeLayout badgeView = badgeList.get(itemIndex);
+                if(badgeList.size() > 0) {
 
-                // Set circle background to badge view
-                badgeView.setBackground(BadgeHelper.createShapeDrawable(badgeColor,badgeShapeType));
+                    RelativeLayout badgeView = badgeList.get(itemIndex);
 
-                BadgeItem badgeItem = new BadgeItem(itemIndex, badgeText, badgeColor);
-                BadgeHelper.showBadge(badgeView, badgeItem,badgeTextColor, show99plusSign);
-                badgeSaveInstanceHashMap.put(itemIndex, badgeItem);
-            }, 1000);
+                    // Set background to badge view
+                    badgeView.setBackground(BadgeHelper.createShapeDrawable(badgeColor,badgeShapeType));
+
+                    BadgeItem badgeItem = new BadgeItem(itemIndex, badgeText, badgeColor);
+                    BadgeHelper.showBadge(badgeView, badgeItem,badgeTextColor, show99plusSign);
+                    badgeSaveInstanceHashMap.put(itemIndex, badgeItem);
+                }
+            }, badgeDelayMillis);
         }
     }
 
@@ -1041,17 +1059,24 @@ public class BottomNavigationView extends RelativeLayout {
         if (itemIndex < 0 || itemIndex > bmItems.size()) {
             throwArrayIndexOutOfBoundsException(itemIndex);
         } else {
+
+            if(badgeList.size() == 0) badgeDelayMillis = 1100;
+            else badgeDelayMillis = 300;
+
             new Handler().postDelayed(() -> {
 
-                RelativeLayout badgeView = badgeList.get(itemIndex);
+                if(badgeList.size() > 0) {
 
-                // Set circle background to badge view
-                badgeView.setBackground(BadgeHelper.createShapeDrawable(badgeColor,badgeShapeType));
+                    RelativeLayout badgeView = badgeList.get(itemIndex);
 
-                BadgeItem badgeItem = new BadgeItem(itemIndex, badgeText, badgeColor);
-                BadgeHelper.showBadge(badgeView, badgeItem,badgeTextColor, show99plusSign);
-                badgeSaveInstanceHashMap.put(itemIndex, badgeItem);
-            }, 1000);
+                    // Set background to badge view
+                    badgeView.setBackground(BadgeHelper.createShapeDrawable(badgeColor,badgeShapeType));
+
+                    BadgeItem badgeItem = new BadgeItem(itemIndex, badgeText, badgeColor);
+                    BadgeHelper.showBadge(badgeView, badgeItem,badgeTextColor, show99plusSign);
+                    badgeSaveInstanceHashMap.put(itemIndex, badgeItem);
+                }
+            }, badgeDelayMillis);
         }
     }
 
@@ -1069,17 +1094,24 @@ public class BottomNavigationView extends RelativeLayout {
         if (itemIndex < 0 || itemIndex > bmItems.size()) {
             throwArrayIndexOutOfBoundsException(itemIndex);
         } else {
+
+            if(badgeList.size() == 0) badgeDelayMillis = 1200;
+            else badgeDelayMillis = 300;
+
             new Handler().postDelayed(() -> {
 
-                RelativeLayout badgeView = badgeList.get(itemIndex);
+                if(badgeList.size() > 0) {
 
-                // Set circle background to badge view
-                badgeView.setBackground(BadgeHelper.createShapeDrawable(badgeColor,badgeShapeType));
+                    RelativeLayout badgeView = badgeList.get(itemIndex);
 
-                BadgeItem badgeItem = new BadgeItem(itemIndex, badgeText, badgeColor);
-                BadgeHelper.showBadge(badgeView, badgeItem,badgeTextColor, show99plusSign);
-                badgeSaveInstanceHashMap.put(itemIndex, badgeItem);
-            }, 1000);
+                    // Set background to badge view
+                    badgeView.setBackground(BadgeHelper.createShapeDrawable(badgeColor,badgeShapeType));
+
+                    BadgeItem badgeItem = new BadgeItem(itemIndex, badgeText, badgeColor);
+                    BadgeHelper.showBadge(badgeView, badgeItem,badgeTextColor, show99plusSign);
+                    badgeSaveInstanceHashMap.put(itemIndex, badgeItem);
+                }
+            }, badgeDelayMillis);
         }
     }
 
@@ -1141,6 +1173,35 @@ public class BottomNavigationView extends RelativeLayout {
     }
 
     /**
+     * Change item if navigation already set up
+     *
+     * @param itemIndex Target position
+     * @param newText   Text to change
+     * @param newIcon   Icon to change
+     */
+    public void changeItemAtPosition(int itemIndex, String newText, int newIcon) {
+        if (itemIndex < 0 || itemIndex > bmItems.size()) {
+            throwArrayIndexOutOfBoundsException(itemIndex);
+        } else {
+
+            BmItem bmItem = bmItems.get(itemIndex);
+
+            RelativeLayout textAndIconContainer = (RelativeLayout) bmItemList.get(itemIndex);
+            TextView bmItemTxt = textAndIconContainer.findViewById(R.id.titleTextView);
+            ImageView bmItemIcon = textAndIconContainer.findViewById(R.id.iconImageView);
+
+            bmItemTxt.setText(newText);
+            bmItem.setTitle(newText);
+
+            bmItemIcon.setImageResource(newIcon);
+            bmItem.setIcon(newIcon);
+
+            changedItemAndIconHashMap.put(itemIndex, bmItem);
+
+        }
+    }
+
+    /**
      * Change item icon if navigation already set up
      *
      * @param itemIndex Target position
@@ -1151,10 +1212,13 @@ public class BottomNavigationView extends RelativeLayout {
             throwArrayIndexOutOfBoundsException(itemIndex);
         } else {
             BmItem bmItem = bmItems.get(itemIndex);
+
             RelativeLayout textAndIconContainer = (RelativeLayout) bmItemList.get(itemIndex);
             ImageView bmItemIcon = textAndIconContainer.findViewById(R.id.iconImageView);
+
             bmItemIcon.setImageResource(newIcon);
             bmItem.setIcon(newIcon);
+
             changedItemAndIconHashMap.put(itemIndex, bmItem);
         }
     }
@@ -1169,11 +1233,15 @@ public class BottomNavigationView extends RelativeLayout {
         if (itemIndex < 0 || itemIndex > bmItems.size()) {
             throwArrayIndexOutOfBoundsException(itemIndex);
         } else {
+
             BmItem bmItem = bmItems.get(itemIndex);
+
             RelativeLayout textAndIconContainer = (RelativeLayout) bmItemList.get(itemIndex);
-            TextView bmItemIcon = textAndIconContainer.findViewById(R.id.titleTextView);
-            bmItemIcon.setText(newText);
+            TextView bmItemTxt = textAndIconContainer.findViewById(R.id.titleTextView);
+
+            bmItemTxt.setText(newText);
             bmItem.setTitle(newText);
+
             changedItemAndIconHashMap.put(itemIndex, bmItem);
         }
     }

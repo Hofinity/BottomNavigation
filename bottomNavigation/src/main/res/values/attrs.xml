@@ -1,105 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <attr name="revWindowBackgroundColor" format="color"/>
-    <attr name="blackAndWhiteTintColor" format="color"/>
-    <attr name="revLightGrayColor" format="color"/>
-    <attr name="revLightGrayColor_2" format="color"/>
-    <attr name="revBlackAndWhiteTintColor" format="color"/>
-    <attr name="revDimColor" format="color"/>
-    <attr name="revTextColor" format="color"/>
-    <attr name="bottomMenuColor" format="color"/>
-    <attr name="lightTextColor" format="color"/>
-    <attr name="spaceColor" format="color"/>
-    <attr name="mainShadowColor" format="color"/>
-    <attr name="revMainShadowColor" format="color"/>
-    <attr name="revRoundedDialogBackground" format="reference"/>
-    <attr name="homeMainAnimationRaw" format="reference"/>
-
-    <declare-styleable name="NetworkCircleImageView">
-        <attr name="civ_border_width" format="dimension" />
-        <attr name="civ_border_color" format="color" />
-        <attr name="civ_border_overlay" format="boolean" />
-        <!-- {@deprecated Use civ_circlebackground_color instead.} -->
-        <attr name="civ_fill_color" format="color" />
-        <attr name="civ_circle_background_color" format="color" />
-    </declare-styleable>
-
-
-    <declare-styleable name="CircleImageView">
-        <attr name="civ_border_width2" format="dimension" />
-        <attr name="civ_border_color2" format="color" />
-        <attr name="civ_border_overlay2" format="boolean" />
-        <!-- {@deprecated Use civ_circlebackground_color instead.} -->
-        <attr name="civ_fill_color2" format="color" />
-        <attr name="civ_circle_background_color2" format="color" />
-    </declare-styleable>
-
-    <declare-styleable name="ExpandableLayout">
-        <attr name="el_duration" format="integer" />
-        <attr name="el_expanded" format="boolean" />
-        <attr name="el_parallax" format="float" />
-        <attr name="android:orientation"/>
-    </declare-styleable>
-
-    <declare-styleable name="ShadowView">
-        <attr name="android:foreground"/>
-        <attr name="shadowMargin" format="dimension"/>
-        <attr name="shadowMarginTop" format="dimension"/>
-        <attr name="shadowMarginLeft" format="dimension"/>
-        <attr name="shadowMarginRight" format="dimension"/>
-        <attr name="shadowMarginBottom" format="dimension"/>
-        <attr name="cornerRadius" format="dimension"/>
-        <attr name="cornerRadiusTL" format="dimension"/>
-        <attr name="cornerRadiusTR" format="dimension"/>
-        <attr name="cornerRadiusBL" format="dimension"/>
-        <attr name="cornerRadiusBR" format="dimension"/>
-        <attr name="foregroundColor" format="color"/>
-        <attr name="shadowColor" format="color"/>
-        <attr name="shadowDx" format="float"/>
-        <attr name="shadowDy" format="float"/>
-        <attr name="shadowRadius" format="dimension"/>
-        <attr name="backgroundColor" format="color"/>
-    </declare-styleable>
-
-    <declare-styleable name="ShadowView_Layout">
-        <attr name="layout_gravity">
-            <flag name="top"
-                value="0x30"/>
-            <flag name="bottom"
-                value="0x50"/>
-            <flag name="left"
-                value="0x03"/>
-            <flag name="right"
-                value="0x05"/>
-            <flag name="center_vertical"
-                value="0x10"/>
-            <flag name="fill_vertical"
-                value="0x70"/>
-            <flag name="center_horizontal"
-                value="0x01"/>
-            <flag name="fill_horizontal"
-                value="0x07"/>
-            <flag name="center"
-                value="0x11"/>
-            <flag name="fill"
-                value="0x77"/>
-            <flag name="clip_vertical"
-                value="0x80"/>
-            <flag name="clip_horizontal"
-                value="0x08"/>
-            <flag name="start"
-                value="0x00800003"/>
-            <flag name="end"
-                value="0x00800005"/>
-        </attr>
-    </declare-styleable>
-
-    <declare-styleable name="CollapsingImageBehavior">
-        <attr name="collapsedTarget" format="reference" />
-    </declare-styleable>
-
-    <!-- TODO bottom menu attrs  -->
     <declare-styleable name="BottomNavigationView">
 
         <!--    main attrs    -->
@@ -122,15 +23,14 @@
 
         <!--    center button attrs    -->
         <attr name="bm_centerButtonIcon" format="reference" />
-        <attr name="bm_centerPartLinear" format="boolean" />
         <attr name="bm_activeCenterButtonIconColor" format="color" />
         <attr name="bm_inactiveCenterButtonIconColor" format="color" />
         <attr name="bm_activeCenterButtonBackgroundColor" format="color"/>
         <attr name="bm_inactiveCenterButtonBackgroundColor" format="color" />
 
         <!--    border attrs    -->
-        <attr name="bm_show_border" format="boolean" />
-        <attr name="bm_border_color" format="color" />
+        <attr name="bm_showBorder" format="boolean" />
+        <attr name="bm_borderColor" format="color" />
         <attr name="bm_borderType">
             <enum name="linear" value="8"/>
             <enum name="centerCurved" value="9"/>
