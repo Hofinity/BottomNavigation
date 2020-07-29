@@ -995,7 +995,7 @@ public class BottomNavigationView extends RelativeLayout {
             throwArrayIndexOutOfBoundsException(itemIndex);
         } else {
 
-            if(badgeList.size() == 0) badgeDelayMillis = 1100;
+            if(badgeList.size() == 0) badgeDelayMillis = 1000;
             else badgeDelayMillis = 300;
 
             new Handler().postDelayed(() -> {
@@ -1027,7 +1027,7 @@ public class BottomNavigationView extends RelativeLayout {
             throwArrayIndexOutOfBoundsException(itemIndex);
         } else {
 
-            if(badgeList.size() == 0) badgeDelayMillis = 1100;
+            if(badgeList.size() == 0) badgeDelayMillis = 1000;
             else badgeDelayMillis = 300;
 
             new Handler().postDelayed(() -> {
@@ -1060,7 +1060,7 @@ public class BottomNavigationView extends RelativeLayout {
             throwArrayIndexOutOfBoundsException(itemIndex);
         } else {
 
-            if(badgeList.size() == 0) badgeDelayMillis = 1100;
+            if(badgeList.size() == 0) badgeDelayMillis = 1000;
             else badgeDelayMillis = 300;
 
             new Handler().postDelayed(() -> {
@@ -1095,7 +1095,7 @@ public class BottomNavigationView extends RelativeLayout {
             throwArrayIndexOutOfBoundsException(itemIndex);
         } else {
 
-            if(badgeList.size() == 0) badgeDelayMillis = 1200;
+            if(badgeList.size() == 0) badgeDelayMillis = 1000;
             else badgeDelayMillis = 300;
 
             new Handler().postDelayed(() -> {
