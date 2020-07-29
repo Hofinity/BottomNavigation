@@ -2,16 +2,6 @@
 
 [![](https://jitpack.io/v/Hofinity/BottomNavigation.svg)](https://jitpack.io/#Hofinity/BottomNavigation)
 
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-<br />
-
 <p align="center">
 <img src="screenshots/center_curved_border.jpg" width="70%">
 </p>
