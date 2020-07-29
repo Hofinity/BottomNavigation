@@ -24,7 +24,7 @@ Step 1. Add it in your root build.gradle at the end of repositories:
   ```groovy
 
 	dependencies {
-	        implementation 'com.github.Hofinity:BottomNavigation:0.0.1'
+	        implementation 'com.github.Hofinity:BottomNavigation:0.0.2'
 	}
 	
    ```	
@@ -34,15 +34,14 @@ Step 1. Add it in your root build.gradle at the end of repositories:
   
   Step 1. 
   
-  ```groovy
-  
+```groovy
   	<repositories>
 		<repository>
 		    <id>jitpack.io</id>
 		    <url>https://jitpack.io</url>
 		</repository>
 	</repositories>
-  ```
+```
   
   Step 2. Add the dependency
 
@@ -50,7 +49,7 @@ Step 1. Add it in your root build.gradle at the end of repositories:
 	<dependency>
 	    <groupId>com.github.Hofinity</groupId>
 	    <artifactId>BottomNavigation</artifactId>
-	    <version>0.0.1</version>
+	    <version>0.0.2</version>
 	</dependency>
 ```
   -------------------------------------------------------------------------
