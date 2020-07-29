@@ -1,8 +1,24 @@
 # BottomNavigation
 
-![Alt text](screenshots/center_curved_border.jpg?raw=true "Curved")
+[![](https://jitpack.io/v/Hofinity/BottomNavigation.svg)](https://jitpack.io/#Hofinity/BottomNavigation)
 
-![Alt text](screenshots/linear_border.jpg?raw=true "Linear")
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<p align="center">
+<img src="screenshots/center_curved_border.jpg" width="70%">
+</p>
+
+<p align="center">
+<img src="screenshots/linear_border.jpg" width="70%">
+</p>
 
 
 ### Gradle ###
